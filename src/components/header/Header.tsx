@@ -8,10 +8,10 @@ import { useState } from 'react'
 
 
 export default function Header() {
-    const [openMenu , setOpenMenu] = useState(true);
+    const [openMenu , setOpenMenu] = useState(false);
 
   return (
-    <StyledHeader openmenu={openMenu}>
+    <StyledHeader $openmenu={openMenu}>
        <nav>
         <div>
         <h1>THE PLANETS</h1>
