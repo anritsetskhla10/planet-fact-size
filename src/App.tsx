@@ -2,9 +2,7 @@ import Header from "./components/header/Header"
 import { Routes, Route, Navigate } from "react-router"
 import Planet from "./components/planet/Planet"
 
-
 function App() {
-
 
   return (
     <>

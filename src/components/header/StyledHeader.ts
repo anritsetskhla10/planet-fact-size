@@ -5,7 +5,6 @@ interface IHeader{
 }
 
 const StyledHeader = styled.header<IHeader>`
-    min-width: 375px;
 
     nav{
         display: flex;
@@ -57,7 +56,7 @@ const StyledHeader = styled.header<IHeader>`
                 
                 }
     
-                div{
+             & >  div{
                     display: flex;
                     flex-direction: row;
                     align-items: center;
@@ -90,6 +89,91 @@ const StyledHeader = styled.header<IHeader>`
         }
     }
 
+    @media only screen and (min-width:768px){
+       nav{
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 0 39px;
+    
+            button{
+                display: none;
+            }
+    
+        }
+    
+        hr{
+           display:none;
+        }
+    
+        ul{
+            display: flex ;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0;
+            position: relative;
+            padding: 0 51px 27px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
+    
+                & > div:not(:last-child){
+                    border-bottom: unset
+                }
+    
+                & >  div{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 33px;
+                    padding:0;
+                }
+    
+                
+                a{
+                    font-size: 11px;
+                    line-height: 2.27;
+                    letter-spacing: 1px;
+                    color: rgba(255, 255, 255, 0.75);
+                }
+    
+                button{
+                display: none;
+                }  
+        }
+    }
+    }
+
+    @media only screen and (min-width:1440px){
+        nav{
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            padding: 22px 41px 27px 32px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            
+            div{
+            padding: 0;
+            }
+
+    
+        ul{ 
+            display: flex ;
+            flex-direction: row;
+            align-items: center;
+            gap: 33px;
+            padding: 0;
+            border-bottom: unset;
+    
+                & >  div{
+                    gap: 33px;
+                }
+    
+        }
+    }
+    }
+
 `
 
 export const Circle = styled.div`
@@ -98,7 +182,26 @@ export const Circle = styled.div`
             height: 20px;
             border-radius: 50%;
             background-color: ${({color}) => color ? color : ""};
+
+            @media only screen and (min-width:768px){
+                display: none !important;
+            }
+
 `
+
+interface IBorder{
+    $bordercolor?: string;
+  }
+  
+ export const StyledLI = styled.li<IBorder>` 
+      
+      a:focus{
+          padding-top: 29px;
+          border-top: 4px solid ${({ $bordercolor }) => $bordercolor };
+      }
+  
+  
+  `
 
 
 export default StyledHeader;

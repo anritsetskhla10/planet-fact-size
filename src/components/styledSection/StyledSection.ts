@@ -1,21 +1,23 @@
 import styled from "styled-components"
 
 interface SectionProps {
-    $planetsize?: {
-      mobile: {
-        width: string;
-        height: string;
-      };
-      tablet: {
-        width: string;
-        height: string;
-      };
-      desktop: {
-        width: string;
-        height: string;
-      };
+  $planetsize?: {
+    mobile: {
+      width: string;
+      height: string;
     };
-  }
+    tablet: {
+      width: string;
+      height: string;
+    };
+    desktop: {
+      width: string;
+      height: string;
+    };
+  };
+  $planetcolor?: string;
+  $surfacedist?:string;
+}
 
 export const StyledSection = styled.section<SectionProps>`
     display: flex;
@@ -43,22 +45,44 @@ export const StyledSection = styled.section<SectionProps>`
             text-align: center;
             color: #fff;
             padding-bottom: 16px;
-
+            
+            &:hover{
+              cursor: pointer;
+              background-color: #d8d8d8;
+            }
 
             &:focus{
-                border-bottom: 4px solid #419ebb;
-                padding-bottom: 12px;
+              background-color:transparent;
+              border-bottom: 4px solid ${({ $planetcolor }) => $planetcolor || ''};
+              padding-bottom: 12px;
+            }
+
+            & > span{
+              display: none;
             }
         }
        
     }
 
-  & > img {
-    width: ${({ $planetsize }) => $planetsize?.mobile.width || 'auto'};
-    height: ${({ $planetsize }) => $planetsize?.mobile.height || 'auto'};
+    .image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 95px;
-  }
 
+    img {
+      width: ${({ $planetsize }) => $planetsize?.mobile.width || 'auto'};
+      height: ${({ $planetsize }) => $planetsize?.mobile.height || 'auto'};
+    }
+
+    .surface-image {
+      position: absolute;
+      width: 101px; 
+      height: 130px;
+      top: 70%;
+    }
+  }
     h2{
       font-size: 40px;
       font-weight: 500;
@@ -158,10 +182,11 @@ export const StyledSection = styled.section<SectionProps>`
                     &:focus{
                     padding: 8px 0 7px 20px;
                     border-bottom: none;
-                    background-color: #2d68f0;
+                    background-color:${({$planetcolor})=> $planetcolor};
                     }
 
                     & > span{
+                      display: inline-block;
                         font-family: 'Spartan';
                         font-size: 9px;
                         font-weight: bold;
@@ -172,14 +197,25 @@ export const StyledSection = styled.section<SectionProps>`
                     }
             }
         }
+        .image-container {
+        position: relative;
+        margin-top: 96px;
+        grid-area: 1 / 1 / 1 / 3;
+        justify-self: center;
 
-        & > img {
-            grid-area: 1 / 1 / 1 / 3;
-            justify-self: center;
-            margin-top: 96px;
-            width: ${({ $planetsize }) => $planetsize?.tablet.width || 'auto'};
+        img {
+          width: ${({ $planetsize }) => $planetsize?.tablet.width || 'auto'};
             height: ${({ $planetsize }) => $planetsize?.tablet.height || 'auto'};
         }
+
+        .surface-image {
+          position: absolute;
+          width: 122px; 
+          height: 156px;
+          top :75%;
+        }
+      }
+
 
         h2{
             grid-area:  2/ 1 / 2 / 1;
@@ -262,14 +298,25 @@ export const StyledSection = styled.section<SectionProps>`
             }
         }
 
-        & > img {
-            grid-area: 1 / 1 / 5 / 1;
+        .image-container {
+          grid-area: 1 / 1 / 5 / 1;
             justify-self: center;
             align-self:center;
             margin-top: 0;
-            width: ${({ $planetsize }) => $planetsize?.desktop.width || 'auto'};
+
+        img {
+          width: ${({ $planetsize }) => $planetsize?.desktop.width || 'auto'};
             height: ${({ $planetsize }) => $planetsize?.desktop.height || 'auto'};
         }
+
+        .surface-image {
+          width: 163px; 
+          height: 199px;
+          top: ${({$surfacedist}) => $surfacedist};
+        }
+        }
+
+       
 
         h2{
             grid-area:  1/ 2 / 1 / 2;
@@ -302,7 +349,7 @@ export const StyledSection = styled.section<SectionProps>`
             padding: 0;
 
         & > div{
-            width: 255px;
+            width: 275px;
             padding: 20px 0 27px 23px;
 
             & > span{
