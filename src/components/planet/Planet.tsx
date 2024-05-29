@@ -3,6 +3,7 @@ import data from '../../../data.json'
 import { useParams } from 'react-router'
 import SourceIcon from '/images/icon-source.svg'
 import { StyledSection } from '../styledSection/StyledSection';
+import styled from 'styled-components';
 
 
   
@@ -14,7 +15,7 @@ export default function Planet() {
     const planetObject = data.find( planetObj => planetObj.name === planetName)
 
   return (
-
+    <StyledMain>
     <StyledSection $planetsize={planetObject?.planetSize}>
     <div className='pages'>
         <button><span>01</span>OVERVIEW</button>
@@ -47,10 +48,16 @@ export default function Planet() {
         </div>
       </div>
     </StyledSection>
+    </StyledMain>
   )
 }
 
-
+const StyledMain = styled.main`
+    
+    @media only screen and (min-width:1440px){
+        padding: 0 165px;
+    }
+`
 
 
 
