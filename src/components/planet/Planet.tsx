@@ -1,16 +1,20 @@
-import data from '../../../data.json'
-import { useParams } from 'react-router'
+
 import SourceIcon from '/images/icon-source.svg'
 import { StyledSection } from '../styledSection/StyledSection';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { TPlanet } from '../../types/Types';
 
-export default function Planet() {
+interface PlanetProps{
+  selectedPlanet:TPlanet | undefined;
+}
 
-  const params = useParams();
-  const planetName = params.planet;
+export default function Planet({selectedPlanet}:PlanetProps) {
 
-  const planetObject = data.find(planetObj => planetObj.name === planetName);
+
+  console.log(selectedPlanet)
+
+  const planetObject = selectedPlanet;
 
   const [currentView, setCurrentView] = useState<'overview' | 'structure' | 'surface'>('overview');
 
