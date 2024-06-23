@@ -6,14 +6,17 @@ import arrowImg from '/images/icon-chevron.svg'
 import { useState } from 'react'
 
 
+interface HeaderProps {
+  setSelectedPlanet: React.Dispatch<React.SetStateAction<string>>;
+}
 
-
-
-export default function Header() {
+export default function Header({setSelectedPlanet}:HeaderProps) {
 
     const [openMenu , setOpenMenu] = useState(false);
 
-
+    const handlePlanetClick = (planetName: string) => {
+      setSelectedPlanet(planetName);
+    };
 
   return (
     <StyledHeader $openmenu={openMenu} >
@@ -30,7 +33,7 @@ export default function Header() {
                 return <div key={index}>
                     <Circle color={planet.color}></Circle>
                     <StyledLI $bordercolor={planet.color}>
-                    <Link to={`/${planet.name}`} >{planet.name}</Link>
+                    <Link to={`/${planet.name}`} onClick={() => handlePlanetClick(planet.name)}>{planet.name}</Link>
                     </StyledLI>  
                     <button > 
                     <img src={arrowImg} alt="arrow icon" />

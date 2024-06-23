@@ -195,9 +195,12 @@ interface IBorder{
   
  export const StyledLI = styled.li<IBorder>` 
       
-      a:focus{
-          padding-top: 29px;
-          border-top: 4px solid ${({ $bordercolor }) => $bordercolor };
+      @media only screen and (min-width: 1440px) {
+        
+          a:focus{
+              padding-top: 29px;
+              border-top: 4px solid ${({ $bordercolor }) => $bordercolor };
+          }
       }
   
   
