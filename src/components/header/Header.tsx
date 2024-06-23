@@ -3,22 +3,14 @@ import { Link} from 'react-router-dom'
 import menuImg from '/images/icon-hamburger.svg'
 import arrowImg from '/images/icon-chevron.svg'
 import { useState } from 'react'
-import { TPlanet } from '../../types/Types'
+import data from '../../../data.json'
 
 
-interface HeaderProps {
-  data: TPlanet[],
-  setSelectedPlanet: React.Dispatch<React.SetStateAction<TPlanet>>;
-}
 
-export default function Header({setSelectedPlanet, data}:HeaderProps) {
+export default function Header() {
 
     const [openMenu , setOpenMenu] = useState(false);
 
-
-    const handlePlanetClick = (planet: any) => {
-      setSelectedPlanet(planet); 
-    };
   return (
     <StyledHeader $openmenu={openMenu} >
        <nav>
@@ -34,7 +26,7 @@ export default function Header({setSelectedPlanet, data}:HeaderProps) {
                 return <div key={index}>
                     <Circle color={planet.color}></Circle>
                     <StyledLI $bordercolor={planet.color}>
-                    <Link to={`/${planet.name}`} onClick={() => handlePlanetClick(planet)}>{planet.name}</Link>
+                    <Link to={`/${planet.name}`} >{planet.name}</Link>
                     </StyledLI>  
                     <button > 
                     <img src={arrowImg} alt="arrow icon" />
